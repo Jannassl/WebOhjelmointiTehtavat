@@ -27,4 +27,19 @@ const todoList = [
   },
 ];
 
-// add your code here
+let ulElement = document.querySelector('ul');
+
+for(let todo of todoList){
+
+  let liElement = document.createElement('li');
+
+  let labelElement = document.createElement('label');
+
+  labelElement.htmlFor = `todo-${todo.id}`;
+
+  labelElement.textContent = `${todo.task} - ${todo.completed ? 'Completed' : 'Not Completed'}`;
+
+  liElement.appendChild(labelElement);
+
+  ulElement.appendChild(liElement);
+}
