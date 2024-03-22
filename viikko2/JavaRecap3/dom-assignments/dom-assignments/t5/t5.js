@@ -782,7 +782,7 @@ for(let restaurant of restaurants){
   let lat = restaurant.location.coordinates[1];
   let lng = restaurant.location.coordinates[0];
 
-  L.marker([lat, lng]).addTo(map)
+  L.marker([lat, lng]).addTo(map).bindPopup(`<h3>${restaurant.name}</h3><p>${restaurant.address}</p>`);
 }
 
 
