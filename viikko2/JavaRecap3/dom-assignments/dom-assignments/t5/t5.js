@@ -1,3 +1,5 @@
+'use strict';
+
 const restaurants = [
   {
     location: {type: 'Point', coordinates: [25.018456, 60.228982]},
@@ -770,4 +772,18 @@ const restaurants = [
   },
 ];
 
-// your code here
+const map = L.map('map').setView([61, 24.97], 7);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+for(let restaurant of restaurants){
+  let lat = restaurant.location.coordinates[1];
+  let lng = restaurant.location.coordinates[0];
+
+  L.marker([lat, lng]).addTo(map)
+}
+
+
+

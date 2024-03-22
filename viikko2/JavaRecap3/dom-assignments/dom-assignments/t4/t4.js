@@ -772,8 +772,12 @@ const restaurants = [
 // Euclidean distance:
 // Distance = √((x2 - x1)^2 + (y2 - y1)^2)
 
-let x1 = parseFloat(prompt('Syötä x koordinaatti'));
-let y1 = parseFloat(prompt('Syötä y koordinaatti'));
+let x1, y1;
+
+navigator.geolocation.getCurrentPosition(position => {
+  x1 = position.coords.latitude;
+  y1 = position.coords.longitude;
+});
 
 
 for(let restaurant of restaurants){
