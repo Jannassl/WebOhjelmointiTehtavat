@@ -770,4 +770,49 @@ const restaurants = [
   },
 ];
 
-// your code here
+
+restaurants.sort((a, b) => a.name.localeCompare(b.name));
+let table = document.querySelector("table");
+
+for(let r of restaurants){
+  table.insertAdjacentHTML('beforeend', `
+    <tr>
+      <td>${r.name}</td>
+      <td>${r.address}</td>
+    </tr>
+  `);
+}
+
+let dialog = document.querySelector("dialog");
+table.addEventListener('click', function(event) {
+  let target = event.target;
+
+  if (target.tagName.toLowerCase() === 'td') {
+    let row = target.parentNode;
+    let restaurantName = row.cells[0].innerText;
+
+    // Remove the highlight class from all rows
+    document.querySelectorAll('tr').forEach(r => r.classList.remove('highlight'));
+
+    // Add the highlight class to the clicked row
+    row.classList.add('highlight');
+
+    let restaurant = restaurants.find(r => r.name === restaurantName);
+
+    if (restaurant) {
+      dialog.innerHTML = '';
+      dialog.insertAdjacentHTML('beforeend', `
+        <ul>
+          <li>Name: ${restaurant.name}</li>
+          <li>Address: ${restaurant.address}</li>
+          <li>City: ${restaurant.city}</li>
+          <li>Company: ${restaurant.company}</li>
+          <li>Phone: ${restaurant.phone}</li>
+          <li>Postal Code: ${restaurant.postalCode}</li>
+        </ul>
+      `);
+
+      dialog.showModal();
+    }
+  }
+});
