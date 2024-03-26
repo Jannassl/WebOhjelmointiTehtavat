@@ -783,6 +783,7 @@ for(let r of restaurants){
   `);
 }
 
+
 let dialog = document.querySelector("dialog");
 table.addEventListener('click', function(event) {
   let target = event.target;
@@ -816,3 +817,17 @@ table.addEventListener('click', function(event) {
     }
   }
 });
+
+async function fetchApi(){
+  try{
+      const response = await fetch('https://10.120.32.94/restaurant/api/v1/restaurants');
+
+      if (!response.ok) throw new Error('Error message');
+      const data = await response.json();
+      console.log(data);
+
+  }catch (error){
+      console.log(error.message);
+  }
+}
+
