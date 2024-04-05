@@ -29,3 +29,4 @@ export const restaurantRow = restaurant => {
   
     return htmlContent;
   };
+  
