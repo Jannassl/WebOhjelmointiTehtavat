@@ -1,9 +1,11 @@
 'use strict'
 import express from 'express';
-const hostname = '127.0.0.1';
+import api from './api/index.js';
 const app = express();
-const port = 3000;
 
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use('/public', express.static('public'));
 
 app.get('/', (req, res) => {
@@ -21,7 +23,5 @@ app.get('/api/v1/cat',(req,res) => {
   };
   res.json(cat);
 });
-
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.use('/api/v1', api);
+export default app;
